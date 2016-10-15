@@ -1,3 +1,2 @@
 # AVSGenerator
-Saa~
-Just a test;
+Repositório de projetos GNU.
