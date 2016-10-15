@@ -1,2 +1,2 @@
-# AVSGenerator
+# Projetos
 Repositório de projetos GNU.
