@@ -1,2 +1,2 @@
-# Projetos
-Repositório de projetos GNU.
+# AVSGenerator
+Gerador de scripts AVS via interface gráfica.
