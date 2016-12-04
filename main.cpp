@@ -1,12 +1,10 @@
-#include "mainwindow.h"
+#include "principal.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.setFixedSize(392,440);
+    Principal w;
     w.show();
-
     return a.exec();
 }
