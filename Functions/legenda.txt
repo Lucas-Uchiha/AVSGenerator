@@ -1,0 +1,2 @@
+VSFilter2.dll : TextSub
+vsfiltermod.dll : TextSubMod
