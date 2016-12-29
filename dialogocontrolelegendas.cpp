@@ -1,8 +1,5 @@
 #include "dialogocontrolelegendas.h"
 #include "ui_dialogocontrolelegendas.h"
-#include "dialogoeditarlegenda.h"
-#include "dialogoadicionarlegenda.h"
-#include <QMessageBox>
 
 DialogoControleLegendas::DialogoControleLegendas(QWidget *parent) :
     QFrame(parent),
@@ -124,4 +121,67 @@ void DialogoControleLegendas::on_botaoDescerLegenda_clicked()
         lista->item(linhaAtual + 1)->setSelected(true); // marca linha abaixo como selecionada
         lista->setFocus(); // foca lista
     }
+}
+
+QString DialogoControleLegendas::getListOfPlugins(){
+
+    QString retorno = ""; // armazena retorno da função
+    int i;
+
+    if(posicao){ // caso não tenha nenhuma legenda adicionada, retorna um string vazio
+        retorno = "LoadPlugin(" + QDir::currentPath() + "/legendaPlugins/" + dados[0].getTipo() + ")"; // pega o primeiro plugin
+        QString novaLinha = ""; // armazena nova linha a ser inserida no retorno
+        /* o for abaixo varre a lista de legendas adicionadas e compara seus plugins
+         * adicionando-os a variavel de retorno desde que nao sejam iguais
+         */
+        for(i = 1; i < posicao; i++){
+            novaLinha = "\n LoadPlugin(" + QDir::currentPath() + "/legendaPlugins/" + dados[i].getTipo() + ")";
+            if(! retorno.contains( novaLinha )) // caso nova linha não esteja presente
+                retorno += novaLinha;           // adiciona nova linha
+        }
+    }
+
+    return retorno;
+}
+
+QString DialogoControleLegendas::getListOfLegendas(){
+
+    QString retorno = ""; // armazena retorno da função
+    int i;
+
+    if(posicao){ // caso não tenha nenhuma legenda adicionada, retorna um string vazio
+
+        // o for abaixo varre a lista de legendas adicionando-as
+        for(i = 0; i < posicao; i++){
+            retorno += getFuncao(dados[i].getTipo()) + "(\"" + dados[i].getCaminho() + "\")\n";
+        }
+    }
+
+    return retorno;
+}
+
+QString DialogoControleLegendas::getFuncao(QString nomeDoTipo){
+
+    QString retorno = ""; // armazena retorno da função
+    QString debug = ""; // armazena caminho para debug
+    debug += "/debug"; // comentar essa linha para deploy
+
+    QFile file(QDir::currentPath() + debug + "/Functions/legenda.txt"); // caminho para o arquivo
+
+    // Tenta abrir arquivo, caso não consiga, retorna uma string vazia
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+
+        // le arquivo linha por linha ate o fim ou ate encontrar a linha desejada
+        QTextStream in(&file);
+        while (! in.atEnd() ) {
+            QString line = in.readLine(); // le as linhas
+            if(line.contains(nomeDoTipo,Qt::CaseInsensitive)){
+                retorno += in.readLine(); // pega nome da função
+                break; // para execução
+            }
+            in.readLine(); // pula uma linha
+        }
+    }
+
+    return retorno;
 }

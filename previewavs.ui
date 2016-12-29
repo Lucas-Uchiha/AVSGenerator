@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>444</width>
-    <height>444</height>
+    <width>566</width>
+    <height>390</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Visualizar AVS</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="imgs.qrc">
+    <normaloff>:/Icones/preview-dark.svg</normaloff>:/Icones/preview-dark.svg</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="1">
@@ -51,6 +55,9 @@
      <property name="documentTitle">
       <string/>
      </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
      <property name="readOnly">
       <bool>true</bool>
      </property>
@@ -65,6 +72,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="imgs.qrc"/>
+ </resources>
  <connections/>
 </ui>

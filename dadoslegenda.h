@@ -8,19 +8,19 @@ class DadosLegenda
 {
 public:
     DadosLegenda();
-    DadosLegenda(QString nome, QString caminho, int tipo);
+    DadosLegenda(QString nome, QString caminho, QString tipo);
 
     void setNome(QString nome);
     void setCaminho(QString caminho);
-    void setTipo(int tipo);
+    void setTipo(QString tipo);
     QString getNome();
     QString getCaminho();
-    int getTipo();
+    QString getTipo();
 
 private:
     QString nome;
     QString caminho;
-    int tipo;
+    QString tipo;
 };
 
 #endif // DADOSLEGENDA_H

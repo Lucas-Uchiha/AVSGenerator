@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/" lang="Português Brasil">
+        <file>Icones/abrir.svg</file>
+        <file>Icones/config.svg</file>
+        <file>Icones/filtro.svg</file>
+        <file>Icones/info.svg</file>
+        <file>Icones/novo.svg</file>
+        <file>Icones/preview.svg</file>
+        <file>Icones/salvar.svg</file>
+        <file>Icones/salvarcomo.svg</file>
+        <file>Icones/config-dark.svg</file>
+        <file>Icones/info-dark.svg</file>
+        <file>Icones/preview-dark.svg</file>
+        <file>Icones/corte.svg</file>
+        <file>Icones/corte-dark.svg</file>
+        <file>Icones/icone.png</file>
+    </qresource>
+</RCC>

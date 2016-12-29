@@ -3,6 +3,9 @@
 
 #include <QDialog>
 #include "dadoslegenda.h"
+#include <QFileDialog>
+#include "global.h"
+#include <QMessageBox>
 
 namespace Ui {
 class DialogoAdicionarLegenda;

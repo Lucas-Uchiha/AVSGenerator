@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "dadoslegenda.h"
+#include <QFileDialog>
+#include "global.h"
 
 namespace Ui {
 class DialogoEditarLegenda;

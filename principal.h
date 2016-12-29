@@ -5,7 +5,12 @@
 #include "dialogocomentarios.h"
 #include "dialogocorte.h"
 #include "dialogocontrolelegendas.h"
+#include "dialogopreferencias.h"
+#include "dialogosobre.h"
+#include "previewavs.h"
+#include "global.h"
 #include <QString>
+#include <QFileDialog>
 
 namespace Ui {
 class Principal;
@@ -42,11 +47,25 @@ private slots:
 
     void on_actionEditar_Legendas_triggered();
 
+    void on_ativarEdLegendas_stateChanged(int arg1);
+
+    void on_ativarEdComentarios_stateChanged(int arg1);
+
+    void on_ativarCorte_stateChanged(int arg1);
+
+    void on_actionPrefer_ncias_triggered();
+
+    void on_actionSobre_triggered();
+
+    void on_botaoGerarAVS_clicked();
+
 private:
     Ui::Principal *ui;
     DialogoComentarios j; // cria dialogo de edição de comentarios
     DialogoCorte c; // cria dialogo de edição de corte
     DialogoControleLegendas l; // cria dialogo de edição de legendas
+    DialogoPreferencias p; // cria dialogo para edição de preferencias do programa
+    DialogoSobre s; // cria dialogo com informações sobre o programa
 };
 
 #endif // PRINCIPAL_H

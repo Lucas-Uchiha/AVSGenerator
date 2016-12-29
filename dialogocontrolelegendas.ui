@@ -85,14 +85,14 @@
       <item>
        <widget class="QPushButton" name="botaoSubirLegenda">
         <property name="text">
-         <string>Up</string>
+         <string>▲</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="botaoDescerLegenda">
         <property name="text">
-         <string>Down</string>
+         <string>▼</string>
         </property>
        </widget>
       </item>
