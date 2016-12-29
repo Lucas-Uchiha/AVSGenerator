@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     dialogoeditarlegenda.cpp \
     dialogoadicionarlegenda.cpp \
     dadoslegenda.cpp \
-    global.cpp
+    global.cpp \
+    dialogopreferencias.cpp \
+    dialogosobre.cpp
 
 HEADERS  += \
     dialogocomentarios.h \
@@ -32,7 +34,9 @@ HEADERS  += \
     dialogoeditarlegenda.h \
     dialogoadicionarlegenda.h \
     dadoslegenda.h \
-    global.h
+    global.h \
+    dialogopreferencias.h \
+    dialogosobre.h
 
 FORMS    += principal.ui \
     dialogocomentarios.ui \
@@ -40,4 +44,13 @@ FORMS    += principal.ui \
     previewavs.ui \
     dialogocontrolelegendas.ui \
     dialogoeditarlegenda.ui \
-    dialogoadicionarlegenda.ui
+    dialogoadicionarlegenda.ui \
+    dialogopreferencias.ui \
+    dialogosobre.ui
+
+RC_FILE = AVSGenerator.rc
+	
+DISTFILES +=
+
+RESOURCES += \
+    imgs.qrc

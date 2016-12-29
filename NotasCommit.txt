@@ -1,0 +1,4 @@
+Adicionar pastas de filtros no diretorio de build debug e fazer alterações no arquivo "global.cpp" 
+conforme comentarios contidos nele
+
+Adicionar pastas de filtros no diretorio de deploy

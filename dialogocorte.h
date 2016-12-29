@@ -2,6 +2,7 @@
 #define DIALOGOCORTE_H
 
 #include <QDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class DialogoCorte;

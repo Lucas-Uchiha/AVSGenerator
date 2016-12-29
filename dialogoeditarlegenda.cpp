@@ -1,13 +1,12 @@
 #include "dialogoeditarlegenda.h"
 #include "ui_dialogoeditarlegenda.h"
-#include <QFileDialog>
-#include "global.h"
 
 DialogoEditarLegenda::DialogoEditarLegenda(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogoEditarLegenda)
 {
     ui->setupUi(this);
+    ui->seleciocaoTipoLegenda->insertItems(0,caminhosFiltrosLegenda); // adiciona itens ao menu de seleção e filtro de legenda
 }
 
 DialogoEditarLegenda::~DialogoEditarLegenda()
@@ -19,7 +18,7 @@ void DialogoEditarLegenda::on_buttonBox_accepted()
 {
     // caso botao OK seja pressionado, salva alterações e fecha janela
     item.setCaminho(filePath); // seta caminho do arquivo
-    item.setTipo(ui->seleciocaoTipoLegenda->currentIndex()); // seta tipo de plugin do arquivo
+    item.setTipo(ui->seleciocaoTipoLegenda->currentText()); // seta tipo de plugin do arquivo
     QFileInfo info(filePath); // pega informações do arquivo selecionado
     item.setNome(info.fileName()); // seta nome do arquivo
     close();
@@ -34,7 +33,7 @@ void DialogoEditarLegenda::on_buttonBox_rejected()
 // função para inicializar variaveis com valores a serem editados
 void DialogoEditarLegenda::editItem(DadosLegenda i){
     ui->caixaCaminhoLegenda->setText(i.getCaminho()); // seta caminho na caixa de texto
-    ui->seleciocaoTipoLegenda->setCurrentIndex(i.getTipo()); // seta tipo de legenda na lista
+    ui->seleciocaoTipoLegenda->setCurrentText(i.getTipo()); // seta tipo de legenda na lista
     item.setCaminho(i.getCaminho()); // adiciona caminho ao item
     item.setNome(i.getNome()); // adiciona nome ao item
     item.setTipo(i.getTipo()); // adiciona tipo ao item

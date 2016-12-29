@@ -2,8 +2,12 @@
 #define DIALOGOCONTROLELEGENDAS_H
 
 #include <QFrame>
-#include "QStringListModel"
 #include "dadoslegenda.h"
+#include "dialogoeditarlegenda.h"
+#include "dialogoadicionarlegenda.h"
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QTextStream>
 
 namespace Ui {
 class DialogoControleLegendas;
@@ -17,6 +21,8 @@ public:
     explicit DialogoControleLegendas(QWidget *parent = 0);
     ~DialogoControleLegendas();
     int posicao = 0; // salva posição atual no array
+    QString getListOfPlugins(); // retorna lista de Plugins para o AVS
+    QString getListOfLegendas(); // retorna lista de legendas para o AVS
 
 private slots:
     void on_botaoAddLegenda_clicked();
@@ -34,6 +40,7 @@ private slots:
 private:
     Ui::DialogoControleLegendas *ui;
     DadosLegenda *dados; // armazena dados
+    QString getFuncao(QString nomeDoTipo); // retorna nome da função a ser usada de acordo com o plugin carregado
 
 };
 

@@ -1,13 +1,12 @@
 #include "dialogoadicionarlegenda.h"
 #include "ui_dialogoadicionarlegenda.h"
-#include <QFileDialog>
-#include "global.h"
 
 DialogoAdicionarLegenda::DialogoAdicionarLegenda(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogoAdicionarLegenda)
 {
     ui->setupUi(this);
+    ui->seleciocaoTipoLegenda->insertItems(0,caminhosFiltrosLegenda); // adiciona itens ao menu de seleção e filtro de legenda
 }
 
 DialogoAdicionarLegenda::~DialogoAdicionarLegenda()
@@ -19,7 +18,7 @@ void DialogoAdicionarLegenda::on_buttonBox_accepted()
 {
     // caso botao OK seja pressionado salva os dados e fecha a janela
     item.setCaminho(filePath); // seta caminho do arquivo
-    item.setTipo(ui->seleciocaoTipoLegenda->currentIndex()); // seta tipo de plugin do arquivo
+    item.setTipo(ui->seleciocaoTipoLegenda->currentText()); // seta tipo de plugin do arquivo
     QFileInfo info(filePath); // pega informações do arquivo selecionado
     item.setNome(info.fileName()); // seta nome do arquivo
     close();
@@ -41,7 +40,6 @@ void DialogoAdicionarLegenda::on_botaoAddLegenda_clicked()
         ui->caixaCaminhoLegenda->setText(filePath); // adiciona caminho para arquivo na caixa
         caminho = filePath; // seta novo caminho padrao
     }
-
 }
 
 // função para retornar novo item

@@ -1,7 +1,5 @@
 #include "dialogocorte.h"
 #include "ui_dialogocorte.h"
-#include <QMessageBox>
-#include <iostream>
 
 DialogoCorte::DialogoCorte(QWidget *parent) :
     QDialog(parent),
