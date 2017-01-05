@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Adicionar Comentários</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="imgs.qrc">
+    <normaloff>:/Icones/comentario-dark.svg</normaloff>:/Icones/comentario-dark.svg</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -43,6 +47,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="imgs.qrc"/>
+ </resources>
  <connections/>
 </ui>

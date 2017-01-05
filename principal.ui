@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="imgs.qrc">
-    <normaloff>:/Icones/icone.png</normaloff>:/Icones/icone.png</iconset>
+    <normaloff>:/Icones/icone.ico</normaloff>:/Icones/icone.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -27,6 +27,9 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="4">
         <widget class="QToolButton" name="botaoSaida">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>...</string>
          </property>
@@ -35,6 +38,9 @@
        <item row="0" column="2">
         <widget class="QLineEdit" name="caixaVideo">
          <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
@@ -54,7 +60,14 @@
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QLineEdit" name="caixaSaida"/>
+        <widget class="QLineEdit" name="caixaSaida">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="textoVideo">
@@ -108,6 +121,9 @@
        </item>
        <item row="2" column="2" rowspan="2">
         <widget class="QPushButton" name="botaoGerarAVS">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -121,6 +137,9 @@
        </item>
        <item row="0" column="2" rowspan="2">
         <widget class="QPushButton" name="botaoPreview">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -199,13 +218,15 @@
     <addaction name="actionNovo"/>
     <addaction name="actionSalvar"/>
     <addaction name="actionSalvar_Como"/>
+    <addaction name="separator"/>
+    <addaction name="actionSair"/>
    </widget>
    <widget class="QMenu" name="menuOp_es">
     <property name="title">
      <string>Opções</string>
     </property>
     <addaction name="actionEditar_Legendas"/>
-    <addaction name="actionEditar_Filtros"/>
+    <addaction name="actionEditar_Video"/>
     <addaction name="actionEditar_Coment_rios"/>
     <addaction name="actionCorte"/>
     <addaction name="actionPr_Visualizar"/>
@@ -253,6 +274,15 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNovo"/>
+   <addaction name="actionSalvar"/>
+   <addaction name="separator"/>
+   <addaction name="actionEditar_Legendas"/>
+   <addaction name="actionEditar_Video"/>
+   <addaction name="actionEditar_Coment_rios"/>
+   <addaction name="actionCorte"/>
+   <addaction name="actionPr_Visualizar"/>
+   <addaction name="separator"/>
+   <addaction name="actionPrefer_ncias"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -296,16 +326,31 @@
    </property>
   </action>
   <action name="actionEditar_Legendas">
+   <property name="icon">
+    <iconset resource="imgs.qrc">
+     <normaloff>:/Icones/legenda.svg</normaloff>:/Icones/legenda.svg</iconset>
+   </property>
    <property name="text">
     <string>Editar Legendas</string>
    </property>
   </action>
-  <action name="actionEditar_Filtros">
+  <action name="actionEditar_Video">
+   <property name="icon">
+    <iconset resource="imgs.qrc">
+     <normaloff>:/Icones/video.svg</normaloff>:/Icones/video.svg</iconset>
+   </property>
    <property name="text">
-    <string>Editar Filtros</string>
+    <string>Editar Vídeo</string>
    </property>
   </action>
   <action name="actionEditar_Coment_rios">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="imgs.qrc">
+     <normaloff>:/Icones/comentario.svg</normaloff>:/Icones/comentario.svg</iconset>
+   </property>
    <property name="text">
     <string>Editar Comentários</string>
    </property>
@@ -329,6 +374,9 @@
    </property>
   </action>
   <action name="actionCorte">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="imgs.qrc">
      <normaloff>:/Icones/corte.svg</normaloff>:/Icones/corte.svg</iconset>
@@ -338,6 +386,9 @@
    </property>
   </action>
   <action name="actionPr_Visualizar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="imgs.qrc">
      <normaloff>:/Icones/preview.svg</normaloff>:/Icones/preview.svg</iconset>
@@ -347,13 +398,30 @@
    </property>
   </action>
   <action name="actionAtualiza_es">
+   <property name="icon">
+    <iconset resource="imgs.qrc">
+     <normaloff>:/Icones/atualizar.svg</normaloff>:/Icones/atualizar.svg</iconset>
+   </property>
    <property name="text">
     <string>Atualizações</string>
    </property>
   </action>
   <action name="actionManual">
+   <property name="icon">
+    <iconset resource="imgs.qrc">
+     <normaloff>:/Icones/manual.svg</normaloff>:/Icones/manual.svg</iconset>
+   </property>
    <property name="text">
     <string>Manual</string>
+   </property>
+  </action>
+  <action name="actionSair">
+   <property name="icon">
+    <iconset resource="imgs.qrc">
+     <normaloff>:/Icones/sair.svg</normaloff>:/Icones/sair.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Sair</string>
    </property>
   </action>
  </widget>

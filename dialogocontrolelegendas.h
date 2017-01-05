@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QTextStream>
+#include "global.h"
 
 namespace Ui {
 class DialogoControleLegendas;

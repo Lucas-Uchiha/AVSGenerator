@@ -6,7 +6,8 @@ Principal::Principal(QWidget *parent) :
     ui(new Ui::Principal)
 {
     ui->setupUi(this);
-    ui->statusBar->showMessage("Bem-vindo!",5000);
+    this->setWindowTitle("AVSGenerator - " + versao); // seta titulo da janela principal
+    ui->statusBar->showMessage("Bem-vindo!",5000); // exibe mensagem de boas vindas na barra de status
 
 }
 
@@ -41,11 +42,37 @@ void Principal::on_botaoVideo_clicked()
         caminho = filePath;
     }
 
+    /* Checa se algum arquivo de vídeo foi selecionado.
+     * Caso não tenha sido, as funcionalidades:
+     *
+     * - Gerar AVS
+     * - Pre-visualizar AVS
+     * - Selecionar arquivo de saida
+     * - Visualizar caminho do arquivo de saida
+     *
+     * são desabilitadas.
+     * Caso contrario, as mesmas são habilitadas.
+     */
+
+    if(ui->caixaVideo->text().isEmpty()){
+        ui->caixaSaida->setEnabled(false);
+        ui->botaoSaida->setEnabled(false);
+        ui->botaoPreview->setEnabled(false);
+        ui->botaoGerarAVS->setEnabled(false);
+        ui->actionPr_Visualizar->setEnabled(false);
+    }
+    else{
+        ui->caixaSaida->setEnabled(true);
+        ui->botaoSaida->setEnabled(true);
+        ui->botaoPreview->setEnabled(true);
+        ui->botaoGerarAVS->setEnabled(true);
+        ui->actionPr_Visualizar->setEnabled(true);
+    }
 }
 
 void Principal::on_botaoSaida_clicked()
 {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Salvar arquivo"), caminho, tr("Arquivos AVS (*.avs)"));
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Salvar arquivo"), ui->caixaSaida->text(), tr("Arquivos AVS (*.avs)"));
     if(!filePath.isEmpty()){
         ui->caixaSaida->setText(filePath); // salva caminho de saida para arquivo avs caso algum tenha sido selecionado
         caminho = filePath;
@@ -77,13 +104,13 @@ void Principal::on_actionPr_Visualizar_triggered()
 QString Principal::geraDadosAvs(){
 
     QString texto; // cria texto do preview
-    texto = "# AVSGenerator versão: 0.0.0" // colocar aqui variavel de controle de versão
+    texto = "# AVSGenerator versão: " + versao +
             "\n\n";
 
     texto +=
            "# Plugins carregados:"
            "\n"
-           "    LoadPlugin(ffms2)";
+           "    LoadPlugin(\"" + QDir::currentPath() + debug + "/VideoPlugins/" + v.getPluginVideo() + "\")";
 
     // Caso legendas estejam habilitadas, carrega plugins de legenda
     if(ui->ativarEdLegendas->isChecked()){
@@ -97,20 +124,22 @@ QString Principal::geraDadosAvs(){
            "\n\n"
            "# Arquivos de Vídeo / Áudio carregados:"
            "\n"
-           "    Aud = FFAudioSource('" + ui->caixaVideo->text() + "')"
+           "    Aud = " + v.getFuncaoVideo() + "(\"" + ui->caixaVideo->text() + "\")"
            "\n"
-           "    Vid = FFVideoSource('" + ui->caixaVideo->text() + "')"
+           "    Vid = " + v.getFuncaoVideo() + "(\"" + ui->caixaVideo->text() + "\")"
            "\n"
            "    AudioDub(vid,aud)"
            "\n\n";
 
     // Caso legendas estejam habilitadas, carrega as legendas
-    if(ui->ativarEdLegendas->isChecked()){
+    if(ui->ativarEdLegendas->isChecked() && l.posicao){
            texto +=
            "# Arquivos de legenda carregados:"
            "\n"
            "    " + l.getListOfLegendas().replace('\n', "\n    "); // pega lista de plugins de legenda
     }
+
+    texto += "\n";
 
     // Caso corte de vídeo esteja habilitado, insere comando e tempos de corte
     if(ui->ativarCorte->isChecked()){
@@ -147,46 +176,108 @@ void Principal::on_actionEditar_Legendas_triggered()
 
 void Principal::on_ativarEdLegendas_stateChanged(int arg1)
 {
-    if(arg1)
+    if(arg1){
         ui->botaoEdLegendas->setDisabled(false);
-    else
+        ui->actionEditar_Legendas->setDisabled(false);
+    }
+    else{
         ui->botaoEdLegendas->setDisabled(true);
+        ui->actionEditar_Legendas->setDisabled(true);
+    }
 }
 
 void Principal::on_ativarEdComentarios_stateChanged(int arg1)
 {
-    if(arg1)
+    if(arg1){
+        ui->actionEditar_Coment_rios->setDisabled(false);
         ui->botaoEdComentarios->setDisabled(false);
-    else
+    }
+    else{
+        ui->actionEditar_Coment_rios->setDisabled(true);
         ui->botaoEdComentarios->setDisabled(true);
+    }
 }
 
 void Principal::on_ativarCorte_stateChanged(int arg1)
 {
-    if(arg1)
+    if(arg1){
+        ui->actionCorte->setDisabled(false);
         ui->botaoCorte->setDisabled(false);
-    else
+    }else{
+        ui->actionCorte->setDisabled(true);
         ui->botaoCorte->setDisabled(true);
+    }
 }
 
 void Principal::on_actionPrefer_ncias_triggered()
 {
-    p.show(); // exibe dialogo para edição de preferencias
+    this->p.show(); // exibe dialogo para edição de preferencias
 }
 
 void Principal::on_actionSobre_triggered()
 {
-    s.show(); // exibe dialogo com informações do programa
+    this->s.show(); // exibe dialogo com informações do programa
 }
 
 void Principal::on_botaoGerarAVS_clicked()
 {
-    ui->statusBar->showMessage("Gerando...",0);
-    ui->progressBar->setValue(0);
+    ui->statusBar->showMessage("Gerando...",0); // seta mensagem na barra de status ao inicio da criação de arquivo
+    ui->progressBar->setValue(0); // seta barra de progresso para 0%
 
-    // fazer as paradas aqui
+    QFile file(ui->caixaSaida->text()); // pega arquivo de saida
+    int r = 0; // armazena resultado de mensagem de sobrescrita de arquivo
 
-    ui->progressBar->setValue(100);
-    ui->statusBar->showMessage("Gerado com sucesso!",4000);
-    ui->progressBar->setValue(0);
+    ui->progressBar->setValue(10); // seta barra de progresso para 10%
+
+    if(file.exists()){
+        ui->progressBar->setValue(22); // seta barra de progresso para 22%
+        QMessageBox msg; // cria caixa de mensagem
+        msg.setWindowTitle("O arquivo já existe..."); // adiciona titulo a caixa de mensagem
+        msg.setText("O arquivo já existe.\nDesaja sobrescreve-lo?"); // adiciona mensagem a caixa de mensagem
+        msg.addButton("Sim",QMessageBox::AcceptRole); // adiciona botao 'sim' a caixa de mensagem
+        msg.addButton("Não",QMessageBox::RejectRole)->setFocus(); // adiciona botao 'nao' a caixa de mensagem
+
+        ui->progressBar->setValue(30); // seta barra de progresso para 30%
+
+        r = msg.exec(); // exibe caixa de mensagem e armazena seu retorno
+    }
+
+    /* caso usuario responda 'sim', o conteudo do arquivo é sunstituido.
+     * caso contrario, para a execução
+     */
+
+    if( !r ){
+
+        ui->progressBar->setValue(50); // seta barra de progresso para 50%
+
+        if (file.open(QFile::WriteOnly | QFile::Truncate)) { // abre o arquivo
+            QTextStream out(&file); // cria objeto de saida
+            out << geraDadosAvs(); // escreve conteudo no arquivo de saida
+
+            ui->progressBar->setValue(100); // seta barra de progresso para 100%
+            ui->statusBar->showMessage("Gerado com sucesso!",4000); // exibe mensagem na barra de status
+        }
+    }
+    else{
+        ui->progressBar->setValue(0); // seta barra de progresso para 0%
+        ui->statusBar->showMessage("O arquivo já existe.",4000); // exibe menssagem na barra de status
+    }
+
+    file.close(); // fecha arquivo
+    ui->progressBar->setValue(0); // seta barra de progresso para 0%
+}
+
+void Principal::on_botaoEdVideo_clicked()
+{
+    this->v.show();
+}
+
+void Principal::on_actionEditar_Video_triggered()
+{
+    on_botaoEdVideo_clicked();
+}
+
+void Principal::on_actionSair_triggered()
+{
+    close();
 }

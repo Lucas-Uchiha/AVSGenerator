@@ -2,7 +2,6 @@
     <qresource prefix="/" lang="Português Brasil">
         <file>Icones/abrir.svg</file>
         <file>Icones/config.svg</file>
-        <file>Icones/filtro.svg</file>
         <file>Icones/info.svg</file>
         <file>Icones/novo.svg</file>
         <file>Icones/preview.svg</file>
@@ -13,6 +12,16 @@
         <file>Icones/preview-dark.svg</file>
         <file>Icones/corte.svg</file>
         <file>Icones/corte-dark.svg</file>
-        <file>Icones/icone.png</file>
+        <file>Icones/comentario.svg</file>
+        <file>Icones/comentario-dark.svg</file>
+        <file>Icones/manual.svg</file>
+        <file>Icones/video.svg</file>
+        <file>Icones/video-dark.svg</file>
+        <file>Icones/legenda.svg</file>
+        <file>Icones/legenda-dark.svg</file>
+        <file>Icones/sair.svg</file>
+        <file>Icones/atualizar.svg</file>
+        <file>Icones/atualizar-dark.svg</file>
+        <file>Icones/icone.ico</file>
     </qresource>
 </RCC>

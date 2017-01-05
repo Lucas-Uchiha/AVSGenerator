@@ -2,6 +2,7 @@
 #define DIALOGOSOBRE_H
 
 #include <QFrame>
+#include "global.h"
 
 namespace Ui {
 class DialogoSobre;
@@ -16,7 +17,7 @@ public:
     ~DialogoSobre();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_botaoOk_clicked();
 
 private:
     Ui::DialogoSobre *ui;
