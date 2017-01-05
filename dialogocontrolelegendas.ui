@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Editor de Legendas</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="imgs.qrc">
+    <normaloff>:/Icones/legenda-dark.svg</normaloff>:/Icones/legenda-dark.svg</iconset>
+  </property>
   <property name="frameShape">
    <enum>QFrame::StyledPanel</enum>
   </property>
@@ -124,6 +128,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="imgs.qrc"/>
+ </resources>
  <connections/>
 </ui>

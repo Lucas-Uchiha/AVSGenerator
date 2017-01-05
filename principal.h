@@ -7,6 +7,7 @@
 #include "dialogocontrolelegendas.h"
 #include "dialogopreferencias.h"
 #include "dialogosobre.h"
+#include "dialogocontrolevideo.h"
 #include "previewavs.h"
 #include "global.h"
 #include <QString>
@@ -59,6 +60,12 @@ private slots:
 
     void on_botaoGerarAVS_clicked();
 
+    void on_botaoEdVideo_clicked();
+
+    void on_actionEditar_Video_triggered();
+
+    void on_actionSair_triggered();
+
 private:
     Ui::Principal *ui;
     DialogoComentarios j; // cria dialogo de edição de comentarios
@@ -66,6 +73,7 @@ private:
     DialogoControleLegendas l; // cria dialogo de edição de legendas
     DialogoPreferencias p; // cria dialogo para edição de preferencias do programa
     DialogoSobre s; // cria dialogo com informações sobre o programa
+    DialogoControleVideo v; // cria dialogo de edição de vídeo
 };
 
 #endif // PRINCIPAL_H

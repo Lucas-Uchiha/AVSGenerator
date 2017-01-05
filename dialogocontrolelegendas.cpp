@@ -163,8 +163,6 @@ QString DialogoControleLegendas::getListOfLegendas(){
 QString DialogoControleLegendas::getFuncao(QString nomeDoTipo){
 
     QString retorno = ""; // armazena retorno da função
-    QString debug = ""; // armazena caminho para debug
-    debug += "/debug"; // comentar essa linha para deploy
 
     QFile file(QDir::currentPath() + debug + "/Functions/legenda.txt"); // caminho para o arquivo
 
@@ -181,7 +179,11 @@ QString DialogoControleLegendas::getFuncao(QString nomeDoTipo){
             }
             in.readLine(); // pula uma linha
         }
+        file.close();
     }
+
+    if(retorno.isEmpty()) // caso não encontre a função na lista, retorna erro
+        retorno += "666error666";
 
     return retorno;
 }

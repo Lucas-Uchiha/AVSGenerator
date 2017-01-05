@@ -6,6 +6,15 @@ DialogoAdicionarLegenda::DialogoAdicionarLegenda(QWidget *parent) :
     ui(new Ui::DialogoAdicionarLegenda)
 {
     ui->setupUi(this);
+
+    // inicio do carregamento de plugins de legenda
+
+    QDir dir(QDir::currentPath() + debug + "/LegendaPlugins"); // abre diretorio com filtros de legenda
+
+    QStringList caminhosFiltrosLegenda = dir.entryList(QDir::Filter::Files,QDir::SortFlag::NoSort); // cria lista de arquivos
+                                                                                                    // de filtros de legenda
+    // fim do carregamento de plugins de legenda
+
     ui->seleciocaoTipoLegenda->insertItems(0,caminhosFiltrosLegenda); // adiciona itens ao menu de seleção e filtro de legenda
 }
 

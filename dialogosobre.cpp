@@ -6,6 +6,7 @@ DialogoSobre::DialogoSobre(QWidget *parent) :
     ui(new Ui::DialogoSobre)
 {
     ui->setupUi(this);
+    ui->textoTitulo->setText(ui->textoTitulo->text().replace("#versao#",versao));
 }
 
 DialogoSobre::~DialogoSobre()
@@ -13,7 +14,7 @@ DialogoSobre::~DialogoSobre()
     delete ui;
 }
 
-void DialogoSobre::on_pushButton_clicked()
+void DialogoSobre::on_botaoOk_clicked()
 {
     close();
 }

@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     dadoslegenda.cpp \
     global.cpp \
     dialogopreferencias.cpp \
-    dialogosobre.cpp
+    dialogosobre.cpp \
+    dialogocontrolevideo.cpp
 
 HEADERS  += \
     dialogocomentarios.h \
@@ -36,7 +37,8 @@ HEADERS  += \
     dadoslegenda.h \
     global.h \
     dialogopreferencias.h \
-    dialogosobre.h
+    dialogosobre.h \
+    dialogocontrolevideo.h
 
 FORMS    += principal.ui \
     dialogocomentarios.ui \
@@ -46,7 +48,8 @@ FORMS    += principal.ui \
     dialogoeditarlegenda.ui \
     dialogoadicionarlegenda.ui \
     dialogopreferencias.ui \
-    dialogosobre.ui
+    dialogosobre.ui \
+    dialogocontrolevideo.ui
 
 RC_FILE = AVSGenerator.rc
 	
