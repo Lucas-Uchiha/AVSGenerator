@@ -129,15 +129,16 @@ QString DialogoControleLegendas::getListOfPlugins(){
     int i;
 
     if(posicao){ // caso não tenha nenhuma legenda adicionada, retorna um string vazio
-        retorno = "LoadPlugin(" + QDir::currentPath() + "/legendaPlugins/" + dados[0].getTipo() + ")"; // pega o primeiro plugin
         QString novaLinha = ""; // armazena nova linha a ser inserida no retorno
         /* o for abaixo varre a lista de legendas adicionadas e compara seus plugins
          * adicionando-os a variavel de retorno desde que nao sejam iguais
          */
-        for(i = 1; i < posicao; i++){
-            novaLinha = "\n LoadPlugin(" + QDir::currentPath() + "/legendaPlugins/" + dados[i].getTipo() + ")";
-            if(! retorno.contains( novaLinha )) // caso nova linha não esteja presente
-                retorno += novaLinha;           // adiciona nova linha
+        for(i = 0; i < posicao; i++){
+            if(dados[i].getTipo().compare("TextSub",Qt::CaseSensitive)){ // caso legenda seja "TextSub", não carrega plugin para ela
+                novaLinha = "\n LoadPlugin(\"" + QDir::currentPath() + "/legendaPlugins/" + getDLL(dados[i].getTipo()) + "\")";
+                if(! retorno.contains( novaLinha )) // caso nova linha não esteja presente
+                    retorno += novaLinha;           // adiciona nova linha
+            }
         }
     }
 
@@ -153,14 +154,14 @@ QString DialogoControleLegendas::getListOfLegendas(){
 
         // o for abaixo varre a lista de legendas adicionando-as
         for(i = 0; i < posicao; i++){
-            retorno += getFuncao(dados[i].getTipo()) + "(\"" + dados[i].getCaminho() + "\")\n";
+            retorno += dados[i].getTipo() + "(\"" + dados[i].getCaminho() + "\")\n";
         }
     }
 
     return retorno;
 }
 
-QString DialogoControleLegendas::getFuncao(QString nomeDoTipo){
+QString DialogoControleLegendas::getDLL(QString nomeDoTipo){
 
     QString retorno = ""; // armazena retorno da função
 
@@ -186,4 +187,20 @@ QString DialogoControleLegendas::getFuncao(QString nomeDoTipo){
         retorno += "666error666";
 
     return retorno;
+}
+
+void DialogoControleLegendas::on_listaDeLegendas_itemDoubleClicked(){
+    QListWidget *lista = ui->listaDeLegendas; // cria ponteiro para facilitar leitura do codigo
+
+    DialogoEditarLegenda win; // cria dialogo para edição de legendas
+
+    win.editItem(dados[lista->currentRow()]);
+
+    int re = win.exec(); // exibe dialogo
+    // somente se o botao OK for pressionado e um item foi selecionado, faz mudanças
+    if( !win.getEditedItem().getCaminho().isEmpty() && re ){
+        dados[lista->currentRow()] = win.getEditedItem(); // adiciona novo item ao array de legendas
+        lista->item(lista->currentRow())->setText(dados[lista->currentRow()].getNome()); // atualiza texto da lista de legendas
+    }
+
 }

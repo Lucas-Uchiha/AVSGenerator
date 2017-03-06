@@ -147,7 +147,18 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QComboBox" name="selecaoTipoVideo"/>
+       <widget class="QComboBox" name="selecaoTipoVideo">
+        <item>
+         <property name="text">
+          <string>DirectShowSource</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>FFmpegSource </string>
+         </property>
+        </item>
+       </widget>
       </item>
      </layout>
     </widget>
