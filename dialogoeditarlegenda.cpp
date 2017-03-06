@@ -7,7 +7,7 @@ DialogoEditarLegenda::DialogoEditarLegenda(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // inicio do carregamento de plugins de legenda
+    /*// inicio do carregamento de plugins de legenda
 
     QDir dir(QDir::currentPath() + debug + "/LegendaPlugins"); // abre diretorio com filtros de legenda
 
@@ -16,6 +16,7 @@ DialogoEditarLegenda::DialogoEditarLegenda(QWidget *parent) :
     // fim do carregamento de plugins de legenda
 
     ui->seleciocaoTipoLegenda->insertItems(0,caminhosFiltrosLegenda); // adiciona itens ao menu de seleção e filtro de legenda
+    */
 }
 
 DialogoEditarLegenda::~DialogoEditarLegenda()

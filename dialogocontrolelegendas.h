@@ -38,10 +38,12 @@ private slots:
 
     void on_botaoDescerLegenda_clicked();
 
+    void on_listaDeLegendas_itemDoubleClicked();
+
 private:
     Ui::DialogoControleLegendas *ui;
     DadosLegenda *dados; // armazena dados
-    QString getFuncao(QString nomeDoTipo); // retorna nome da função a ser usada de acordo com o plugin carregado
+    QString getDLL(QString nomeDoTipo); // retorna nome da função a ser usada de acordo com o plugin carregado
 
 };
 

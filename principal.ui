@@ -138,7 +138,7 @@
        <item row="0" column="2" rowspan="2">
         <widget class="QPushButton" name="botaoPreview">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">

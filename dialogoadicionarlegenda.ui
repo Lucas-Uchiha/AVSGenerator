@@ -68,7 +68,18 @@
        </spacer>
       </item>
       <item row="3" column="0">
-       <widget class="QComboBox" name="seleciocaoTipoLegenda"/>
+       <widget class="QComboBox" name="seleciocaoTipoLegenda">
+        <item>
+         <property name="text">
+          <string>TextSub</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>TextSubMod</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item row="1" column="0" colspan="2">
        <widget class="QLineEdit" name="caixaCaminhoLegenda"/>

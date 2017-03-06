@@ -9,6 +9,17 @@ Principal::Principal(QWidget *parent) :
     this->setWindowTitle("AVSGenerator - " + versao); // seta titulo da janela principal
     ui->statusBar->showMessage("Bem-vindo!",5000); // exibe mensagem de boas vindas na barra de status
 
+   /* // inicio da mensagem para testadores // remover para enviar ao github
+
+    QMessageBox msg;
+    msg.setWindowTitle("Bem-vindo!");
+    msg.setText("Olá senhor testador, seja bem-vindo a primeira versão de testes do programa.\n"
+                "Caso encontre algum problema ou tenha sugestões, não deixe de falar com o autor. :D\n"
+                "Não redistribua essa compilação.");
+    msg.exec();
+
+    // fim da mensagem para testadores // remover para enviar ao github*/
+
 }
 
 Principal::~Principal()
@@ -107,16 +118,21 @@ QString Principal::geraDadosAvs(){
     texto = "# AVSGenerator versão: " + versao +
             "\n\n";
 
-    texto +=
-           "# Plugins carregados:"
-           "\n"
-           "    LoadPlugin(\"" + QDir::currentPath() + debug + "/VideoPlugins/" + v.getPluginVideo() + "\")";
+    if(! v.getPluginVideo().isEmpty()){
+        texto +=
+               "# Plugins carregados:"
+               "\n"
+               "    " + v.getPluginVideo();
+     }
+     else{
+        texto +=
+               "# Plugins carregados:";
+     }
 
     // Caso legendas estejam habilitadas, carrega plugins de legenda
     if(ui->ativarEdLegendas->isChecked()){
 
            texto +=
-           "\n"
            "    " + l.getListOfPlugins().replace('\n', "\n   "); // pega lista de plugins de legenda
     }
 

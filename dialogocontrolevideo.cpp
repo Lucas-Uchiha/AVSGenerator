@@ -7,7 +7,7 @@ DialogoControleVideo::DialogoControleVideo(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // inicio do carregamento de decoders de video
+    /*// inicio do carregamento de decoders de video
 
     QDir dir(QDir::currentPath() + debug + "/VideoPlugins"); // abre diretorio com filtros de legenda
 
@@ -16,6 +16,7 @@ DialogoControleVideo::DialogoControleVideo(QWidget *parent) :
     // fim do carregamento de decoders de video
 
     ui->selecaoTipoVideo->insertItems(0,listaDeFiltros); // adiciona itens ao menu de seleção do tipo de video
+    */
 }
 
 DialogoControleVideo::~DialogoControleVideo()
@@ -28,7 +29,7 @@ void DialogoControleVideo::on_botaoOk_clicked()
     close();
 }
 
-QString DialogoControleVideo::getFuncaoVideo(){
+QString DialogoControleVideo::getPluginVideo(){
     QString retorno = ""; // armazena retono da função
     QString nomeDoPlugin = ui->selecaoTipoVideo->currentText();
 
@@ -36,7 +37,6 @@ QString DialogoControleVideo::getFuncaoVideo(){
 
     // Tenta abrir arquivo, caso não consiga, retorna uma string vazia
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
-
         // le arquivo linha por linha ate o fim ou ate encontrar a linha desejada
         QTextStream in(&file);
         while (! in.atEnd() ) {
@@ -52,10 +52,14 @@ QString DialogoControleVideo::getFuncaoVideo(){
 
     if(retorno.isEmpty()) // caso não encontre a função na lista, retorna erro
         retorno += "666error666";
+    else if(retorno.contains("DirectShowSource",Qt::CaseInsensitive)) // caso Plugin de video seja "DirectShowSource",
+        retorno = "";                                                 // retorna string vazia.
+    else
+        retorno = "LoadPlugin(\"" + QDir::currentPath() + debug + "/VideoPlugins/" + retorno + "\")";
 
     return retorno;
 }
 
-QString DialogoControleVideo::getPluginVideo(){
+QString DialogoControleVideo::getFuncaoVideo(){
     return ui->selecaoTipoVideo->currentText();
 }
