@@ -7,9 +7,6 @@ description: |
 grade: devel
 confinement: strict
 
-apps:
-  avsg:
-
 parts:
   avsg:
     source: .
