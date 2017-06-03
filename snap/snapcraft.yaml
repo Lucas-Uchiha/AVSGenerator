@@ -20,4 +20,4 @@ parts:
     build-packages:
       - build-essential
       - qt5-default
-after: [desktop-qt5]
+    after: [desktop-qt5]
