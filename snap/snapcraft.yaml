@@ -1,0 +1,29 @@
+
+name: avsg
+version: '0.5'
+summary: Uma ferramenta para criação de scripts avs.
+description: |
+  Cria arquivos avs sem a necessidade de conhecimentos sobre a linguagem.
+grade: devel
+confinement: strict
+
+apps:
+  avsg:
+    command: avsg start
+
+parts:
+  launcher:
+    plugin: dump
+    prime:
+      - bin/*
+      - lib/*
+
+  avsg:
+    source: .
+    plugin: qmake
+    qt-version: qt5
+    project-files: [AVSGenerator.pro]
+    build-packages:
+      - build-essential
+      - qt5-default
+after: [desktop-qt5]
