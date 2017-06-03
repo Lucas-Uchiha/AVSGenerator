@@ -9,7 +9,6 @@ confinement: strict
 
 apps:
   avsg:
-    command: avsg start
 
 parts:
   avsg:
