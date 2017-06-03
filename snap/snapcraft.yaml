@@ -12,12 +12,6 @@ apps:
     command: avsg start
 
 parts:
-  launcher:
-    plugin: dump
-    prime:
-      - bin/*
-      - lib/*
-
   avsg:
     source: .
     plugin: qmake
