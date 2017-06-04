@@ -8,7 +8,7 @@ grade: devel
 confinement: strict
 
 apps:
-  architectures: [i386]
+  architectures: 'i386'
   
 parts:
   avsg:
