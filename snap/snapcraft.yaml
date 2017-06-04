@@ -7,6 +7,11 @@ description: |
 grade: devel
 confinement: strict
 
+apps:
+  architectures:
+  - amd64
+  - i386
+  
 parts:
   avsg:
     source: .
