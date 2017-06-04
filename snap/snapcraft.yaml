@@ -7,9 +7,6 @@ description: |
 grade: devel
 confinement: strict
 
-apps:
-  architectures: 'i386'
-  
 parts:
   avsg:
     source: .
@@ -20,3 +17,4 @@ parts:
       - build-essential
       - qt5-default
     after: [desktop-qt5]
+    architectures: [i386]
