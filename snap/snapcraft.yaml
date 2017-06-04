@@ -17,4 +17,3 @@ parts:
       - build-essential
       - qt5-default
     after: [desktop-qt5]
-    architecture: [i386]
