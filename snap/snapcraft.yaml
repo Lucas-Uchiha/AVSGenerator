@@ -7,13 +7,6 @@ description: |
 grade: devel
 confinement: strict
 
-apps:
-  avsg:
-    command: avsg
-    plugs:
-      - unity7
-      - home
-
 parts:
   avsg:
     source: .
