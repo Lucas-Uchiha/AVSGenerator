@@ -9,7 +9,7 @@ confinement: strict
 
 apps:
   avsg:
-    command: 
+    command: avsg
     plugs:
       - unity7
       - home
