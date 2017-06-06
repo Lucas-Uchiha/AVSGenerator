@@ -7,6 +7,13 @@ description: |
 grade: devel
 confinement: strict
 
+apps:
+  avsg:
+    command: avsg
+    plugs:
+      - unity7
+      - home
+
 parts:
   avsg:
     source: .
@@ -17,3 +24,6 @@ parts:
       - build-essential
       - qt5-default
     after: [desktop-qt5]
+    stage-packages:
+      # Here for the plugins-- they're not linked in automatically.
+      - libqt5gui5
